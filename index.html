@@ -10,21 +10,23 @@
 --bg:#0b0e14;--sf:#12161f;--sf2:#171c27;--sf3:#1d2432;--bd:#232a38;--bd2:#2c3546;
 --tx:#e6e9ef;--mu:#8b95a7;--mu2:#647084;
 --gr:#22c55e;--grS:rgba(34,197,94,.12);--grB:rgba(34,197,94,.35);
---am:#f59e0b;--amS:rgba(245,158,11,.12);--rd:#ef4444;--vi:#8b5cf6;--ac:#6366f1;
+--am:#f59e0b;--amS:rgba(245,158,11,.12);
+--rd:#ef4444;--vi:#8b5cf6;--ac:#6366f1;
 --r:12px;--rL:16px;
 }
 [data-theme=light]{
 --bg:#f3f5f9;--sf:#fff;--sf2:#f7f8fb;--sf3:#eef1f6;--bd:#e2e6ee;--bd2:#d3dae5;
 --tx:#131720;--mu:#5d6879;--mu2:#8792a3;
 --gr:#16a34a;--grS:rgba(22,163,74,.10);--grB:rgba(22,163,74,.30);
---am:#d97706;--amS:rgba(217,119,6,.10);--rd:#dc2626;--vi:#7c3aed;--ac:#6366f1;
+--am:#d97706;--amS:rgba(217,119,6,.10);
+--rd:#dc2626;--vi:#7c3aed;--ac:#6366f1;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;min-height:100dvh}
-button,input,select{font:inherit;color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:none}
-::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:8px}
 .app{display:flex;min-height:100dvh}
 .sb{position:fixed;inset:0 auto 0 0;width:230px;background:var(--sf);
@@ -35,7 +37,7 @@ background:linear-gradient(135deg,#6366f1,#a855f7);display:grid;place-items:cent
 color:#fff;font-weight:800;font-size:13px}
 .sb-name{font-weight:800;font-size:14px;letter-spacing:.1em}
 .sb-tag{font-size:10px;color:var(--mu);margin-top:2px}
-.sb-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:2px}
+.sb-nav{flex:1;padding:12px 10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
 .sb-nav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;
 color:var(--mu);font-size:13.5px;font-weight:500;text-decoration:none;transition:.15s}
 .sb-nav a:hover{background:var(--sf2);color:var(--tx)}
@@ -59,6 +61,8 @@ border:1px solid var(--bd);background:var(--sf);color:var(--mu);font-size:15px}
 letter-spacing:.1em;text-transform:uppercase;
 background:repeating-linear-gradient(135deg,rgba(245,158,11,.16) 0 12px,rgba(245,158,11,.07) 12px 24px);
 color:var(--am);border-bottom:1px solid rgba(245,158,11,.35)}
+.banner.imp{background:repeating-linear-gradient(135deg,rgba(34,197,94,.16) 0 12px,rgba(34,197,94,.06) 12px 24px);
+color:var(--gr);border-bottom-color:var(--grB)}
 .view{flex:1;padding:22px 18px 40px;max-width:1200px;width:100%;margin:0 auto}
 .ph{margin-bottom:20px}
 .ph h1{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
@@ -124,8 +128,10 @@ min-height:38px;white-space:nowrap;transition:.15s}
 .btn.p{background:var(--ac);border-color:var(--ac);color:#fff}
 .btn.p:hover{background:#5457e5}
 .btn.g{background:var(--gr);border-color:var(--gr);color:#04220f}
+.btn.d{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.35);color:#f87171}
 .btn.sm{padding:6px 11px;font-size:12px;min-height:32px}
 .btn.blk{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed}
 .bks{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 .bk{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rL);
 padding:15px;display:flex;flex-direction:column;gap:12px}
@@ -151,6 +157,44 @@ color:var(--mu)}
 .field input,.field select{padding:11px 12px;border-radius:10px;background:var(--sf2);
 border:1px solid var(--bd);color:var(--tx);font-size:14px;outline:none;width:100%}
 .field input:focus,.field select:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(139,92,246,.18)}
+.grid2{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+textarea{width:100%;padding:12px;border-radius:10px;background:var(--sf2);
+border:1px solid var(--bd);color:var(--tx);font-size:12.5px;outline:none;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.6;
+resize:vertical;min-height:160px}
+textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(139,92,246,.18)}
+.seg{display:flex;background:var(--sf2);border:1px solid var(--bd);border-radius:10px;
+padding:3px;gap:2px;width:100%;margin-bottom:16px}
+.seg button{flex:1;padding:9px 12px;border-radius:7px;font-size:13px;font-weight:600;
+color:var(--mu);transition:.15s}
+.seg button.on{background:var(--sf);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.imp-row{display:flex;align-items:center;gap:11px;padding:11px 14px;
+border-bottom:1px solid var(--bd)}
+.imp-row:last-child{border-bottom:none}
+.imp-bk{width:30px;height:30px;border-radius:9px;flex:none;display:grid;place-items:center;
+color:#fff;font-weight:800;font-size:10px}
+.imp-info{flex:1;min-width:0}
+.imp-match{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.imp-sub{font-size:11px;color:var(--mu);margin-top:2px;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+.imp-odds{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;
+color:var(--gr);flex:none}
+.imp-del{width:24px;height:24px;border-radius:7px;flex:none;display:grid;place-items:center;
+color:var(--mu);font-size:12px}
+.imp-del:hover{background:var(--sf2);color:var(--rd)}
+.prev-h{padding:11px 14px;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);
+display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;
+background:var(--sf2)}
+.prev-row{padding:10px 14px;border-bottom:1px solid var(--bd);font-size:12px;
+display:flex;gap:10px;align-items:flex-start}
+.prev-row:last-child{border-bottom:none}
+.prev-ln{font-family:ui-monospace,monospace;color:var(--mu2);flex:none;
+font-size:10.5px;min-width:22px;padding-top:1px}
+.prev-ok{color:var(--gr);font-weight:700}
+.prev-bad{color:var(--rd);font-weight:700}
+.prev-msg{flex:1;min-width:0}
+.prev-detail{font-size:11px;color:var(--mu);margin-top:2px;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap;font-family:ui-monospace,monospace}
 .cg{display:grid;gap:16px;grid-template-columns:1fr 1fr}
 .legin{display:grid;grid-template-columns:auto 1fr 1fr;gap:10px;align-items:end;
 padding:12px;border:1px solid var(--bd);border-radius:var(--r);background:var(--sf2);margin-bottom:10px}
@@ -197,18 +241,30 @@ color:var(--mu);line-height:1.6}
 .mu{color:var(--mu)}
 .sm{font-size:12px}
 .mono{font-variant-numeric:tabular-nums}
+.toasts{position:fixed;top:14px;right:14px;z-index:200;display:flex;flex-direction:column;
+gap:10px;max-width:min(340px,calc(100vw - 28px));pointer-events:none}
+.toast{background:var(--sf);border:1px solid var(--bd);border-left:3px solid var(--gr);
+border-radius:var(--r);padding:12px 14px;box-shadow:0 12px 32px rgba(0,0,0,.4);
+pointer-events:auto;animation:tin .25s ease-out}
+.toast.a{border-left-color:var(--am)}
+.toast.e{border-left-color:var(--rd)}
+.toast-t{font-size:12.5px;font-weight:800;letter-spacing:.02em}
+.toast-b{font-size:12px;color:var(--mu);margin-top:4px;line-height:1.45}
+@keyframes tin{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
 .bn{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;
 background:rgba(18,22,31,.96);backdrop-filter:blur(14px);border-top:1px solid var(--bd);
 padding-bottom:env(safe-area-inset-bottom,0)}
 [data-theme=light] .bn{background:rgba(255,255,255,.96)}
 .bn-in{display:flex;overflow-x:auto;scrollbar-width:none}
 .bn-in::-webkit-scrollbar{display:none}
-.bn-in a{flex:1 0 auto;min-width:60px;display:flex;flex-direction:column;align-items:center;
-gap:3px;padding:9px 6px 8px;color:var(--mu2);font-size:9.5px;font-weight:700;text-decoration:none}
+.bn-in a{flex:1 0 auto;min-width:62px;display:flex;flex-direction:column;align-items:center;
+gap:3px;padding:9px 6px 8px;color:var(--mu2);font-size:9.5px;font-weight:700;
+text-decoration:none}
 .bn-in a.on{color:var(--vi)}
 .bn-in .ic{width:19px;height:19px}
 @media(min-width:720px){.ov{align-items:center;padding:24px}.modal{border-radius:20px}}
 @media(max-width:860px){.cg{grid-template-columns:1fr}}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}}
 @media(max-width:900px){
 .sb{display:none}
 .main{margin-left:0;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
@@ -259,6 +315,7 @@ passwords, OTP codes, or 2FA codes, and never bypasses CAPTCHA or anti-bot syste
 <nav class="bn"><div class="bn-in" id="bnNav"></div></nav>
 </div>
 <div class="ov" id="ov"></div>
+<div class="toasts" id="toasts"></div>
 <script>
 (function(){
 "use strict";
@@ -277,15 +334,21 @@ var MARKETS={
 "Over/Under 3.5":{label:"Total Goals Over/Under 3.5",out:["Over","Under"]},
 "BTTS":{label:"Both Teams To Score",out:["Yes","No"]},
 "Moneyline":{label:"Moneyline (2-Way)",out:["Home","Away"]},
-"Match Winner":{label:"Match Winner (2-Way)",out:["Home","Away"]}
+"Match Winner":{label:"Match Winner (2-Way)",out:["Home","Away"]},
+"Total Points":{label:"Total Points Over/Under",out:["Over","Under"]}
 };
 var ALIAS={
-"match result":"1X2","match winner":"1X2","full time result":"1X2","1x2":"1X2",
+"1x2":"1X2","match result":"1X2","match winner":"1X2","full time result":"1X2",
+"full-time result":"1X2","winner":"1X2","head to head":"Match Winner",
 "over 2.5 goals":"Over/Under 2.5","total goals over 2.5":"Over/Under 2.5",
-"over/under 2.5":"Over/Under 2.5","over 1.5 goals":"Over/Under 1.5",
-"over/under 1.5":"Over/Under 1.5","over 3.5 goals":"Over/Under 3.5",
-"over/under 3.5":"Over/Under 3.5","both teams to score":"BTTS","btts":"BTTS",
-"moneyline":"Moneyline","money line":"Moneyline","winner":"Match Winner"
+"over/under 2.5":"Over/Under 2.5","total goals o/u 2.5":"Over/Under 2.5",
+"over 1.5 goals":"Over/Under 1.5","over/under 1.5":"Over/Under 1.5",
+"total goals over 1.5":"Over/Under 1.5",
+"over 3.5 goals":"Over/Under 3.5","over/under 3.5":"Over/Under 3.5",
+"total goals over 3.5":"Over/Under 3.5",
+"both teams to score":"BTTS","btts":"BTTS","gg/ng":"BTTS",
+"moneyline":"Moneyline","money line":"Moneyline",
+"total points":"Total Points","points over/under":"Total Points"
 };
 function normMarket(raw){
 if(!raw)return "Unknown";
@@ -319,7 +382,7 @@ Away:{sportybet:2.20,betway:2.25,betano:2.18,xbet:2.30,soccabet:2.22}}}},
 "Over/Under 3.5":{Over:{sportybet:1.90,betway:1.88,betano:1.92,xbet:1.95,soccabet:1.89},
 Under:{sportybet:1.95,betway:1.98,betano:1.92,xbet:1.90,soccabet:2.00}}}}
 ];
-var LS={set:"arbscout.settings.v1",hist:"arbscout.history.v1"};
+var LS={set:"arbscout.settings.v1",imp:"arbscout.imported.v1"};
 function load(k,d){try{var v=JSON.parse(localStorage.getItem(k)||"null");return v==null?d:v}catch(e){return d}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 var DEF={cur:"GH₵",minArb:1,defStake:1000,dark:true};
@@ -335,28 +398,122 @@ function clock(ts){return new Date(ts).toLocaleTimeString("en-GB",{hour12:false}
 function ago(ts){var s=Math.floor((Date.now()-ts)/1000);
 if(s<60)return s+"s ago";var m=Math.floor(s/60);if(m<60)return m+"m ago";
 var h=Math.floor(m/60);if(h<24)return h+"h ago";return Math.floor(h/24)+"d ago"}
+/* ---- import storage ---- */
+var imported=load(LS.imp,[]);
+if(!Array.isArray(imported))imported=[];
+function saveImp(){try{localStorage.setItem(LS.imp,JSON.stringify(imported))}catch(e){}}
+/* ---- bookmaker alias resolution ---- */
+var BKA={
+"sportybet":"sportybet","sporty":"sportybet","sporty bet":"sportybet","sb":"sportybet",
+"betway":"betway","bw":"betway",
+"betano":"betano","bt":"betano",
+"1xbet":"xbet","xbet":"xbet","1x":"xbet","onexbet":"xbet","1x bet":"xbet",
+"soccabet":"soccabet","socca":"soccabet","sc":"soccabet"
+};
+function resolveBk(s){if(!s)return null;var k=String(s).toLowerCase().trim().replace(/\s+/g," ");return BKA[k]||null}
+function resolveSel(raw){
+var s=String(raw==null?"":raw).toLowerCase().trim();
+if(!s)return "";
+if(/\bover\b/.test(s))return "Over";
+if(/\bunder\b/.test(s))return "Under";
+if(/^(yes|y|gg|both)$/.test(s))return "Yes";
+if(/^(no|n|ng|none)$/.test(s))return "No";
+if(/^(1|home|h|team1)$/.test(s))return "Home";
+if(/^(x|draw|d|tie)$/.test(s))return "Draw";
+if(/^(2|away|a|team2)$/.test(s))return "Away";
+return String(raw).trim();
+}
+/* ---- CSV parser (handles quoted fields) ---- */
+function parseLine(line){
+var out=[],cur="",inQ=false,i,ch;
+for(i=0;i<line.length;i++){
+ch=line[i];
+if(inQ){
+if(ch==='"'){
+if(line[i+1]==='"'){cur+='"';i++}else inQ=false;
+}else cur+=ch;
+}else{
+if(ch==='"')inQ=true;
+else if(ch===","){out.push(cur);cur=""}
+else cur+=ch;
+}
+}
+out.push(cur);
+return out.map(function(s){return s.trim()});
+}
+function parseCSV(text){
+var lines=String(text||"").split(/\r?\n/).map(function(l){return l.trim()}).filter(Boolean);
+var rows=[],errs=[],start=0;
+if(lines.length&&/bookmaker/i.test(lines[0])&&/odds/i.test(lines[0]))start=1;
+for(var i=start;i<lines.length;i++){
+var p=parseLine(lines[i]);
+if(p.length<7){errs.push({ln:i+1,msg:"Expected 7 columns, found "+p.length,raw:lines[i]});continue}
+var bk=resolveBk(p[0]);
+if(!bk){errs.push({ln:i+1,msg:'Unknown bookmaker "'+p[0]+'"',raw:lines[i]});continue}
+var odds=parseFloat(p[6]);
+if(!(odds>1.0001)){errs.push({ln:i+1,msg:'Invalid odds "'+p[6]+'" (must be > 1.00)',raw:lines[i]});continue}
+if(!p[3]||!p[2]||!p[4]||!p[5]){errs.push({ln:i+1,msg:"Missing a required field",raw:lines[i]});continue}
+rows.push({bookmaker:bk,sport:p[1]||"Football",league:p[2],match:p[3],
+market:normMarket(p[4]),marketRaw:p[4],selection:resolveSel(p[5]),odds:odds,ts:Date.now(),src:"import"});
+}
+return {rows:rows,errs:errs};
+}
+function addImp(row){
+var key=[row.bookmaker,row.match,row.market,row.selection].join("|").toLowerCase();
+var idx=-1,i;
+for(i=0;i<imported.length;i++){
+if([imported[i].bookmaker,imported[i].match,imported[i].market,imported[i].selection]
+.join("|").toLowerCase()===key){idx=i;break}
+}
+if(idx>=0)imported[idx]=row;else imported.push(row);
+saveImp();
+}
+function delImp(i){imported.splice(i,1);saveImp();scan2()}
+function clearImp(){imported=[];saveImp();scan2()}
+/* ---- base64url decode for hash import ---- */
+function b64dec(s){
+try{
+var b=s.replace(/-/g,"+").replace(/_/g,"/")+"===".slice((s.length+3)%4);
+var bin=atob(b),bytes=new Uint8Array(bin.length),i;
+for(i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+return new TextDecoder().decode(bytes);
+}catch(e){return null}
+}
+function checkHashImport(){
+var m=location.hash.match(/[?&]d=([^&]+)/);
+if(!m)return;
+var csv=b64dec(m[1]);
+if(!csv){toast("Import failed","Could not decode shared data.","e");cleanHash();return}
+var res=parseCSV(csv);
+if(!res.rows.length){toast("Import failed","No valid rows in shared data.","e");cleanHash();return}
+for(var i=0;i<res.rows.length;i++)addImp(res.rows[i]);
+toast("Imported","+"+res.rows.length+" odds rows added.","");
+cleanHash();
+scan2();
+}
+function cleanHash(){try{history.replaceState(null,"",location.pathname+"#/import")}catch(e){}}
+/* ---- demo feed ---- */
 var TICK=0;
 function buildDemo(){
-var now=Date.now(),rows=[],h;
-for(var f=0;f<FIX.length;f++){
-var fx=FIX[f];
-var mk=Object.keys(fx.markets);
-for(var mi=0;mi<mk.length;mi++){
-var rmn=mk[mi],mkt=normMarket(rmn),sels=fx.markets[rmn];
-var sk=Object.keys(sels);
-for(var si=0;si<sk.length;si++){
+var now=Date.now(),rows=[],f,mi,si,bi,h,i;
+for(f=0;f<FIX.length;f++){
+var fx=FIX[f],mk=Object.keys(fx.markets);
+for(mi=0;mi<mk.length;mi++){
+var rmn=mk[mi],mkt=normMarket(rmn),sels=fx.markets[rmn],sk=Object.keys(sels);
+for(si=0;si<sk.length;si++){
 var sel=sk[si],prices=sels[sel],bs=Object.keys(prices);
-for(var bi=0;bi<bs.length;bi++){
+for(bi=0;bi<bs.length;bi++){
 var b=bs[bi],base=prices[b];
 h=0;var key=fx.match+"|"+mkt+"|"+sel+"|"+b+":"+TICK;
-for(var i=0;i<key.length;i++){h=(h^key.charCodeAt(i))*16777619;h=h>>>0}
+for(i=0;i<key.length;i++){h=(h^key.charCodeAt(i))*16777619;h=h>>>0}
 var jit=((h%2000)/1000-1)*0.012;
-var odds=Math.max(1.01,Math.round(base*(1+jit)*100)/100);
 rows.push({bookmaker:b,sport:fx.sport,league:fx.league,match:fx.match,
-market:mkt,marketRaw:rmn,selection:sel,odds:odds,ts:now});
+market:mkt,marketRaw:rmn,selection:sel,
+odds:Math.max(1.01,Math.round(base*(1+jit)*100)/100),ts:now});
 }}}}
 return rows;
 }
+/* ---- arbitrage engine ---- */
 function scan(rows){
 var g={},i,r,key;
 for(i=0;i<rows.length;i++){
@@ -375,43 +532,41 @@ if(!by[rr.selection]||rr.odds>by[rr.selection].odds)by[rr.selection]=rr;
 var canon=MARKETS[b.market]?MARKETS[b.market].out:null;
 var picks=[];
 if(canon){
-var ok=true;
-for(j=0;j<canon.length;j++){if(!by[canon[j]]){ok=false;break}picks.push(by[canon[j]])}
-if(!ok)return;
+for(j=0;j<canon.length;j++){if(!by[canon[j]])return;picks.push(by[canon[j]])}
 }else{
 var ks=Object.keys(by);if(ks.length<2)return;
 for(j=0;j<ks.length;j++)picks.push(by[ks[j]]);
 }
-var S2=0;
-for(j=0;j<picks.length;j++)S2+=1/picks[j].odds;
-var arb=(1-S2)*100,isA=S2<1;
-var ts=0;
+var SI=0;
+for(j=0;j<picks.length;j++)SI+=1/picks[j].odds;
+var arb=(1-SI)*100,isA=SI<1,ts=0;
 for(j=0;j<picks.length;j++)if(picks[j].ts>ts)ts=picks[j].ts;
 out.push({id:b.key,sport:b.sport,league:b.league,match:b.match,
 market:b.market,marketLabel:MARKETS[b.market]?MARKETS[b.market].label:b.market,
 picks:picks.map(function(p){return{bookmaker:p.bookmaker,selection:p.selection,
 odds:p.odds,ts:p.ts}}),
-totalImplied:S2,arbPct:arb,isArb:isA,ts:ts,
-roi:isA?arb/S2:-((S2-1)*100)});
+totalImplied:SI,arbPct:arb,isArb:isA,ts:ts,
+roi:isA?arb/SI:-((SI-1)*100)});
 });
 return out.sort(function(a,b){return b.arbPct-a.arbPct});
 }
 function stakes(picks,total){
-var S2=0,i;
-for(i=0;i<picks.length;i++)S2+=1/picks[i].odds;
-var ret=total/S2,legs=[];
+var SI=0,i;
+for(i=0;i<picks.length;i++)SI+=1/picks[i].odds;
+var ret=total/SI,legs=[];
 for(i=0;i<picks.length;i++){
 var st=ret/picks[i].odds;
 legs.push({bookmaker:picks[i].bookmaker,selection:picks[i].selection,
 odds:picks[i].odds,stake:st,payout:st*picks[i].odds});
 }
 var profit=ret-total;
-return {legs:legs,totalStake:total,totalImplied:S2,expectedReturn:ret,
-profit:profit,roi:profit/total*100,arbPct:(1-S2)*100,isArb:S2<1};
+return {legs:legs,totalStake:total,totalImplied:SI,expectedReturn:ret,
+profit:profit,roi:profit/total*100,arbPct:(1-SI)*100,isArb:SI<1};
 }
-var ST={route:"dashboard",rows:[],opps:[],last:null,search:""};
+var ST={route:"dashboard",rows:[],opps:[],last:null,tab:"quick",preview:null};
 var ICON={
 dash:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+imp:'<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',
 opp:'<path d="M3 17l5-5 4 4 8-8"/><path d="M14 8h6v6"/>',
 bk:'<path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5"/>',
 calc:'<rect x="4" y="2.5" width="16" height="19" rx="2.5"/><path d="M8 7h8M8 11.5h.01M12 11.5h.01M16 11.5h.01M8 15.5h.01M12 15.5h.01M16 15.5h.01M8 19h8"/>',
@@ -420,15 +575,16 @@ set:'<circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.
 function svg(p){return '<svg class="ic" viewBox="0 0 24 24">'+p+'</svg>'}
 var NAV=[
 {id:"dashboard",l:"Dashboard",s:"Home",i:ICON.dash},
+{id:"import",l:"Import Odds",s:"Import",i:ICON.imp},
 {id:"opps",l:"Opportunities",s:"Arbs",i:ICON.opp},
 {id:"books",l:"Bookmakers",s:"Books",i:ICON.bk},
 {id:"calc",l:"Calculator",s:"Calc",i:ICON.calc},
 {id:"settings",l:"Settings",s:"More",i:ICON.set}
 ];
 function renderNav(){
-var s="",b="",i;
+var s="",b="",i,n,on;
 for(i=0;i<NAV.length;i++){
-var n=NAV[i],on=ST.route===n.id?" on":"";
+n=NAV[i];on=ST.route===n.id?" on":"";
 s+='<a href="#/'+n.id+'" class="'+on.trim()+'">'+svg(n.i)+'<span>'+n.l+'</span></a>';
 b+='<a href="#/'+n.id+'" class="'+on.trim()+'">'+svg(n.i)+'<span>'+n.s+'</span></a>';
 }
@@ -436,9 +592,9 @@ document.getElementById("sbNav").innerHTML=s;
 document.getElementById("bnNav").innerHTML=b;
 }
 function oppCard(o){
-var legs="",i;
+var legs="",i,p,bk;
 for(i=0;i<o.picks.length;i++){
-var p=o.picks[i],bk=BK[p.bookmaker];
+p=o.picks[i];bk=BK[p.bookmaker];
 legs+='<div class="leg"><div class="leg-s">'+esc(p.selection)+'</div>'+
 '<div class="leg-b">'+esc(bk?bk.name:p.bookmaker)+'</div>'+
 '<div class="leg-o">'+p.odds.toFixed(2)+'</div></div>';
@@ -456,33 +612,164 @@ return '<article class="opp'+(o.isArb?" g":" n")+'" data-opp="'+esc(o.id)+'">'+
 '<button class="btn sm'+(o.isArb?" g":"")+'" data-open="'+esc(o.id)+'">View & calculate</button>'+
 '</div></article>';
 }
-function emptyState(t,b){
-return '<div class="empty"><h3>'+esc(t)+'</h3><p>'+b+'</p></div>';
-}
+function emptyState(t,b){return '<div class="empty"><h3>'+esc(t)+'</h3><p>'+b+'</p></div>'}
+/* ============================================================
+   PAGES
+   ============================================================ */
 function pageDash(){
 var arbs=ST.opps.filter(function(o){return o.isArb});
-var best=arbs[0];
-var top=arbs.slice(0,4);
+var best=arbs[0],top=arbs.slice(0,4);
+var srcLbl=imported.length?"Imported feed":"Demo feed";
+var srcMeta=imported.length?imported.length+" rows":"sample data";
 var html='<div class="ph"><h1>Dashboard</h1><p>Live overview of compared markets across the five supported bookmakers.</p></div>';
 html+='<div class="stats">';
 html+='<div class="stat g"><div class="stat-l">Active arbs</div><div class="stat-v'+(arbs.length?" g":"")+'">'+arbs.length+'</div><div class="stat-m">above '+S.minArb+'% threshold</div></div>';
 html+='<div class="stat v"><div class="stat-l">Best arb</div><div class="stat-v'+(best?" g":"")+'">'+(best?pct(best.arbPct):"—")+'</div><div class="stat-m">'+(best?esc(best.match):"no arbitrage found")+'</div></div>';
-html+='<div class="stat b"><div class="stat-l">Bookmakers</div><div class="stat-v">5<span style="font-size:15px;color:var(--mu)">/5</span></div><div class="stat-m">demo feed active</div></div>';
+html+='<div class="stat b"><div class="stat-l">Data source</div><div class="stat-v sm">'+esc(srcLbl)+'</div><div class="stat-m">'+esc(srcMeta)+'</div></div>';
 html+='<div class="stat a"><div class="stat-l">Markets scanned</div><div class="stat-v">'+ST.opps.length+'</div><div class="stat-m">'+ST.rows.length+' odds entries</div></div>';
 html+='<div class="stat"><div class="stat-l">Last update</div><div class="stat-v sm mono">'+(ST.last?clock(ST.last):"—")+'</div><div class="stat-m">'+(ST.last?ago(ST.last):"not scanned yet")+'</div></div>';
 html+='</div>';
+if(!imported.length){
+html+='<div class="card" style="border-color:var(--am)"><div class="card-b">'+
+'<div style="display:flex;gap:11px;align-items:flex-start">'+
+'<span style="color:var(--am);flex:none;font-size:18px">⚠</span>'+
+'<div class="sm" style="line-height:1.6"><strong>You are viewing demo data.</strong> '+
+'These are sample odds for testing the interface. To use real odds, go to '+
+'<a href="#/import" style="color:var(--vi);font-weight:700">Import Odds</a> '+
+'and enter prices from your own bookmaker accounts.</div></div></div></div>';
+}
 html+='<div class="card"><div class="card-h">Top opportunities <span>'+arbs.length+' found · sorted by arbitrage %</span></div><div class="card-b">';
-if(top.length){html+='<div class="opps">';for(var i=0;i<top.length;i++)html+=oppCard(top[i]);html+='</div>';}
+if(top.length){html+='<div class="opps">';
+for(var i=0;i<top.length;i++)html+=oppCard(top[i]);html+='</div>';}
 else html+=emptyState("No arbitrage right now","No combination of the compared markets currently returns a total implied probability below 1.");
 html+='</div></div>';
 return html;
+}
+function pageImp(){
+var html='<div class="ph"><h1>Import Odds</h1><p>Enter prices you read directly from your own bookmaker accounts. Imported odds become the active feed and are compared by the arbitrage engine.</p></div>';
+html+='<div class="card" style="border-color:var(--am)"><div class="card-b" style="padding:13px 15px">'+
+'<div style="display:flex;gap:11px;align-items:flex-start">'+
+'<span style="color:var(--am);flex:none;font-size:16px">⚠</span>'+
+'<div class="sm mu" style="line-height:1.6"><strong style="color:var(--tx)">Verify before betting.</strong> '+
+'Imported odds are only as fresh as the moment you read them. Bookmakers move prices constantly — '+
+'always confirm the current number on the bookmaker site before placing a wager.</div></div></div></div>';
+html+='<div class="seg" id="impTabs">'+
+'<button data-tab="quick" class="'+(ST.tab==="quick"?"on":"")+'">Quick add</button>'+
+'<button data-tab="bulk" class="'+(ST.tab==="bulk"?"on":"")+'">Bulk paste</button>'+
+'</div>';
+html+='<div id="impPane"></div>';
+html+='<div class="card mt" style="margin-top:16px">'+
+'<div class="card-h"><div>Imported odds</div><span id="impCount">'+imported.length+' '+(imported.length===1?"entry":"entries")+'</span></div>'+
+'<div id="impList"></div>'+
+(imported.length?'<div class="card-b" style="border-top:1px solid var(--bd);padding:12px 14px;display:flex;gap:8px;flex-wrap:wrap">'+
+'<button class="btn sm" id="impRescan">Re-scan now</button>'+
+'<button class="btn sm d" id="impClear">Clear all imported odds</button></div>':'')+
+'</div>';
+return html;
+}
+function renderImpPane(){
+var box=document.getElementById("impPane");
+if(!box)return;
+if(ST.tab==="bulk"){
+box.innerHTML='<div class="card"><div class="card-b">'+
+'<div class="field"><label>Paste CSV</label>'+
+'<textarea id="bulkText" placeholder="bookmaker,sport,league,match,market,selection,odds&#10;sportybet,Football,Premier League,Chelsea vs Arsenal,1X2,Home,2.20&#10;betway,Football,Premier League,Chelsea vs Arsenal,1X2,Draw,4.00&#10;betano,Football,Premier League,Chelsea vs Arsenal,1X2,Away,4.80"></textarea></div>'+
+'<div class="row"><button class="btn sm" id="bulkExample">Load example</button>'+
+'<button class="btn sm p" id="bulkParse" style="margin-left:auto">Parse</button></div>'+
+'<div class="sm mu mt" style="line-height:1.6">Bookmaker names accept: SportyBet, SB, Betway, BW, Betano, 1xBet, Soccabet.<br>'+
+'Markets accept: 1X2, Match Result, Over 2.5 Goals, BTTS, Moneyline.<br>'+
+'Selections accept: Home/1, Draw/X, Away/2, Over, Under, Yes, No.</div>'+
+'</div><div id="bulkPrev"></div></div>';
+return;
+}
+var leagueOpts=[],matchOpts=[],i,seen={};
+for(i=0;i<imported.length;i++){
+if(!seen["l:"+imported[i].league]){seen["l:"+imported[i].league]=1;leagueOpts.push(imported[i].league)}
+if(!seen["m:"+imported[i].match]){seen["m:"+imported[i].match]=1;matchOpts.push(imported[i].match)}
+}
+var mkOpts=["1X2","Over/Under 2.5","Over/Under 1.5","Over/Under 3.5","BTTS","Moneyline","Match Winner"];
+box.innerHTML='<div class="card"><div class="card-b">'+
+'<div class="grid2"><div class="field"><label>Bookmaker</label><select id="qBk">'+
+BKS.map(function(b){return '<option value="'+b.id+'">'+esc(b.name)+'</option>'}).join("")+
+'</select></div>'+
+'<div class="field"><label>Sport</label><select id="qSp">'+
+["Football","Basketball","Tennis","Baseball","Ice Hockey","Other"].map(function(s){return '<option>'+s+'</option>'}).join("")+
+'</select></div></div>'+
+'<div class="field"><label>League</label><input id="qLg" list="dlLg" placeholder="Premier League"></div>'+
+'<div class="field"><label>Match</label><input id="qMt" list="dlMt" placeholder="Chelsea vs Arsenal"></div>'+
+'<div class="field"><label>Market</label><input id="qMk" list="dlMk" placeholder="1X2" value="1X2"></div>'+
+'<div class="grid2"><div class="field" id="qSelWrap"></div>'+
+'<div class="field"><label>Odds</label><input type="number" id="qOd" step="0.01" min="1.01" placeholder="2.20"></div></div>'+
+'<button class="btn p blk mt" id="qAdd">Add odds row</button>'+
+'<div class="sm mu mt" style="line-height:1.6">Tip: league, match and market stay filled after adding, so you can enter each outcome of the same market quickly.</div>'+
+'<datalist id="dlLg">'+leagueOpts.map(function(l){return '<option value="'+esc(l)+'">'}).join("")+'</datalist>'+
+'<datalist id="dlMt">'+matchOpts.map(function(m){return '<option value="'+esc(m)+'">'}).join("")+'</datalist>'+
+'<datalist id="dlMk">'+mkOpts.map(function(m){return '<option value="'+esc(m)+'">'}).join("")+'</datalist>'+
+'</div></div>';
+renderSelField();
+}
+function renderSelField(){
+var wrap=document.getElementById("qSelWrap");
+if(!wrap)return;
+var mkInput=document.getElementById("qMk");
+var mkt=normMarket(mkInput?mkInput.value:"");
+var known=MARKETS[mkt]?MARKETS[mkt].out:null;
+if(known){
+wrap.innerHTML='<label>Selection</label><select id="qSel">'+
+known.map(function(o){return '<option value="'+o+'">'+o+'</option>'}).join("")+'</select>';
+}else{
+wrap.innerHTML='<label>Selection</label><input id="qSel" placeholder="e.g. Home">';
+}
+}
+function renderImpList(){
+var box=document.getElementById("impList");
+if(!box)return;
+if(!imported.length){
+box.innerHTML='<div class="empty" style="padding:32px 16px"><p>No odds imported yet. Add rows above.</p></div>';
+}else{
+var html="",i,r,b;
+for(i=imported.length-1;i>=0;i--){
+r=imported[i];b=BK[r.bookmaker];
+html+='<div class="imp-row">'+
+'<div class="imp-bk" style="background:'+(b?b.color:"#333")+'">'+esc(b?b.short:"?")+'</div>'+
+'<div class="imp-info"><div class="imp-match">'+esc(r.match)+'</div>'+
+'<div class="imp-sub">'+esc(r.league)+' · '+esc(r.market)+' · '+esc(r.selection)+'</div></div>'+
+'<div class="imp-odds">'+r.odds.toFixed(2)+'</div>'+
+'<button class="imp-del" data-delimp="'+i+'" aria-label="Delete">✕</button></div>';
+}
+box.innerHTML=html;
+}
+var cnt=document.getElementById("impCount");
+if(cnt)cnt.textContent=imported.length+' '+(imported.length===1?"entry":"entries");
+}
+function bulkPrevHTML(){
+if(!ST.preview)return "";
+var rows=ST.preview.rows,errs=ST.preview.errs;
+var okH="",i,r,b;
+for(i=0;i<rows.length;i++){
+r=rows[i];b=BK[r.bookmaker];
+okH+='<div class="prev-row"><div class="prev-ln">✓</div><div class="prev-msg">'+
+'<div><strong>'+esc(b?b.name:r.bookmaker)+'</strong> · '+esc(r.match)+'</div>'+
+'<div class="prev-detail">'+esc(r.league)+' · '+esc(r.market)+' · '+esc(r.selection)+
+' · <span class="prev-ok">'+r.odds.toFixed(2)+'</span></div></div></div>';
+}
+var badH="";
+for(i=0;i<errs.length;i++){
+badH+='<div class="prev-row"><div class="prev-ln">'+errs[i].ln+'</div><div class="prev-msg">'+
+'<div class="prev-bad">'+esc(errs[i].msg)+'</div>'+
+'<div class="prev-detail">'+esc(errs[i].raw)+'</div></div></div>';
+}
+return '<div class="prev-h"><span><span class="prev-ok">'+rows.length+' valid</span>'+
+(errs.length?' · <span class="prev-bad">'+errs.length+' rejected</span>':'')+'</span>'+
+(rows.length?'<button class="btn sm p" id="bulkImport">Import '+rows.length+' rows</button>':'')+
+'</div>'+okH+badH;
 }
 function pageOpps(){
 var arbs=ST.opps.filter(function(o){return o.isArb&&o.arbPct>=S.minArb});
 var html='<div class="ph"><h1>Opportunities</h1><p>Confirmed arbitrage positions, sorted from highest to lowest arbitrage percentage.</p></div>';
 if(arbs.length){html+='<div class="opps">';
 for(var i=0;i<arbs.length;i++)html+=oppCard(arbs[i]);html+='</div>';}
-else html+=emptyState("No matching opportunities","No arbitrage positions currently meet your minimum threshold of "+S.minArb+"%. Try lowering it in Settings.");
+else html+=emptyState("No matching opportunities","No arbitrage positions currently meet your minimum threshold of "+S.minArb+"%. "+(imported.length?"Add more odds from different bookmakers for the same match and market.":"Try importing odds from at least two bookmakers for the same match."));
 return html;
 }
 function pageBooks(){
@@ -490,15 +777,19 @@ var html='<div class="ph"><h1>Bookmaker Connections</h1><p>Arb Scout connects on
 html+='<div class="card"><div class="card-b sm mu" style="line-height:1.7">'+
 '<strong style="color:var(--tx)">Connection policy.</strong> Each adapter requires an official bookmaker API or a supported authentication flow. '+
 'This build ships with no API credentials configured, so all adapters honestly report <em>Unsupported</em>. '+
-'Demo Mode is a separate, clearly-labelled sample feed used only to exercise the interface and the arbitrage engine.</div></div>';
+'Demo Mode and imported odds are separate, clearly-labelled feeds used only by the arbitrage engine.</div></div>';
 html+='<div class="bks">';
 for(var i=0;i<BKS.length;i++){
 var b=BKS[i];
+var hasImp=false;
+for(var j=0;j<imported.length;j++)if(imported[j].bookmaker===b.id)hasImp=true;
+var stat=hasImp?'<span class="chip g">Imported</span>':'<span class="chip n">Unsupported</span>';
+var stxt=hasImp?'Imported odds feed active':'Unsupported — awaiting supported data connection';
 html+='<div class="bk"><div class="bk-h">'+
 '<div class="bk-l" style="background:'+b.color+'">'+b.short+'</div>'+
 '<div style="min-width:0"><div class="bk-n">'+esc(b.name)+'</div>'+
-'<div class="bk-s">Unsupported — awaiting supported data connection</div></div>'+
-'<div class="bk-st"><span class="chip n">Unsupported</span></div></div>'+
+'<div class="bk-s">'+esc(stxt)+'</div></div>'+
+'<div class="bk-st">'+stat+'</div></div>'+
 '<dl class="bk-r">'+
 '<div class="bk-rr"><dt>Last connection</dt><dd>—</dd></div>'+
 '<div class="bk-rr"><dt>Last odds update</dt><dd>'+(ST.last?clock(ST.last):"—")+'</dd></div>'+
@@ -512,19 +803,18 @@ return html;
 }
 var calcOdds=["",""];
 function pageCalc(){
-var html='<div class="ph"><h1>Stake Calculator</h1><p>Enter odds manually to calculate implied probability, arbitrage percentage, stake distribution, expected return and ROI.</p></div>';
-html+='<div class="cg">';
-html+='<div class="card"><div class="card-h">Inputs</div><div class="card-b">'+
+return '<div class="ph"><h1>Stake Calculator</h1><p>Enter odds manually to calculate implied probability, arbitrage percentage, stake distribution, expected return and ROI.</p></div>'+
+'<div class="cg">'+
+'<div class="card"><div class="card-h">Inputs</div><div class="card-b">'+
 '<div class="field"><label>Total stake ('+esc(S.cur)+')</label>'+
 '<input type="number" id="cStake" min="1" step="10" value="'+S.defStake+'"></div>'+
 '<div id="cLegs"></div>'+
 '<div class="row mt"><button class="btn sm" id="cAdd">+ Add outcome</button>'+
 '<button class="btn sm" id="cRm">− Remove</button>'+
 '<button class="btn sm" id="cReset">Reset</button></div>'+
-'</div></div>';
-html+='<div class="card"><div class="card-h">Result</div><div class="card-b" id="cRes"></div></div>';
-html+='</div>';
-return html;
+'</div></div>'+
+'<div class="card"><div class="card-h">Result</div><div class="card-b" id="cRes"></div></div>'+
+'</div>';
 }
 function renderCalcLegs(){
 var box=document.getElementById("cLegs");if(!box)return;
@@ -540,9 +830,10 @@ box.innerHTML=html;
 }
 function renderCalcRes(){
 var box=document.getElementById("cRes");if(!box)return;
-var st=parseFloat((document.getElementById("cStake")||{}).value)||0;
-var odds=[],i;
-for(i=0;i<calcOdds.length;i++){var v=parseFloat(calcOdds[i]);if(v>1.0001)odds.push(v)}
+var el=document.getElementById("cStake");
+var st=parseFloat(el?el.value:0)||0;
+var odds=[],i,v;
+for(i=0;i<calcOdds.length;i++){v=parseFloat(calcOdds[i]);if(v>1.0001)odds.push(v)}
 if(odds.length<2){
 box.innerHTML=emptyState("Enter at least two odds","Provide decimal odds for two or more outcomes to calculate implied probability.");
 return;
@@ -552,9 +843,9 @@ for(i=0;i<odds.length;i++)picks.push({bookmaker:"o"+(i+1),selection:"Outcome "+(
 var r=stakes(picks,st);
 var implied="";
 for(i=0;i<odds.length;i++)implied+='<div class="kv"><dt>Outcome '+(i+1)+' implied probability</dt><dd>'+((1/odds[i])*100).toFixed(3)+'%</dd></div>';
-var legs="";
+var legs="",l;
 for(i=0;i<r.legs.length;i++){
-var l=r.legs[i];
+l=r.legs[i];
 legs+='<div class="leg"><div class="leg-s">Outcome '+(i+1)+'</div>'+
 '<div class="leg-b">'+money(l.stake)+'</div>'+
 '<div class="leg-o">@ '+l.odds.toFixed(2)+'</div></div>';
@@ -580,29 +871,39 @@ var html='<div class="ph"><h1>Settings</h1><p>Preferences are stored locally in 
 html+='<div class="card"><div class="card-h">General</div><div class="card-b">';
 html+='<div class="field"><label>Currency symbol</label><select id="sCur">'+
 ["GH₵","₦","$","€","£","KSh","R"].map(function(c){
-return '<option value="'+c+'"'+(S.cur===c?" selected":"")+'>'+c+'</option>'}).join("")+'</select></div>';
+return '<option value="'+esc(c)+'"'+(S.cur===c?" selected":"")+'>'+esc(c)+'</option>'}).join("")+'</select></div>';
 html+='<div class="field"><label>Minimum arbitrage %</label><input type="number" id="sMin" min="0" max="100" step="0.1" value="'+S.minArb+'"></div>';
 html+='<div class="field"><label>Default stake</label><input type="number" id="sStake" min="1" step="50" value="'+S.defStake+'"></div>';
 html+='<div class="field"><label>Dark mode</label><button class="btn" id="sDark">'+(S.dark?"On — tap to turn off":"Off — tap to turn on")+'</button></div>';
 html+='</div></div>';
-html+='<div class="card"><div class="card-h">About this build</div><div class="card-b sm mu" style="line-height:1.7">'+
-'<p style="margin-bottom:10px">This is <strong style="color:var(--tx)">Demo Mode</strong>. All odds you see are sample data, clearly labelled with a banner at the top of every page. '+
-'No real bookmaker connection is active.</p>'+
-'<p style="margin-bottom:10px">To use real odds, you need an official API from each bookmaker. The five adapters '+
+html+='<div class="card"><div class="card-h">Data feed</div><div class="card-b sm mu" style="line-height:1.7">'+
+'<p style="margin-bottom:10px"><strong style="color:var(--tx)">Active source:</strong> '+
+(imported.length?'Imported odds ('+imported.length+' rows)':'Demo feed (sample data)')+'</p>'+
+'<p style="margin-bottom:10px">Import your own odds from SportyBet, Betway, Betano, 1xBet or Soccabet using the '+
+'<a href="#/import" style="color:var(--vi);font-weight:700">Import Odds</a> page. As soon as any imported row exists, the demo feed is switched off automatically.</p>'+
+'<p>To use real live odds, you need an official API from each bookmaker. The five adapters '+
 '(<span class="mono">sportybetAdapter</span>, <span class="mono">betwayAdapter</span>, <span class="mono">betanoAdapter</span>, '+
 '<span class="mono">xbetAdapter</span>, <span class="mono">soccabetAdapter</span>) are ready to receive one.</p>'+
-'<p>Until then, the app never fabricates live data. It would rather show you "Unsupported" than lie about a connection.</p>'+
 '</div></div>';
 return html;
 }
-var PAGES={dashboard:pageDash,opps:pageOpps,books:pageBooks,calc:pageCalc,settings:pageSettings};
+var PAGES={dashboard:pageDash,import:pageImp,opps:pageOpps,books:pageBooks,calc:pageCalc,settings:pageSettings};
 function render(){
 var fn=PAGES[ST.route]||pageDash;
 document.getElementById("view").innerHTML=fn();
 if(ST.route==="calc"){renderCalcLegs();renderCalcRes()}
+if(ST.route==="import"){renderImpPane();renderImpList()}
 renderNav();
-document.getElementById("banner").textContent=S.dark?"DEMO DATA — NOT LIVE ODDS":"DEMO DATA — NOT LIVE ODDS";
+var b=document.getElementById("banner");
+if(imported.length){
+b.textContent="IMPORTED ODDS — NOT LIVE · VERIFY BEFORE BETTING";
+b.className="banner imp";
+}else{
+b.textContent="DEMO DATA — NOT LIVE ODDS";
+b.className="banner";
 }
+}
+/* ---- modal ---- */
 function openModal(html){
 var ov=document.getElementById("ov");
 ov.innerHTML='<div class="modal">'+html+'</div>';
@@ -618,11 +919,10 @@ function openOpp(id){
 var o=null,i;
 for(i=0;i<ST.opps.length;i++)if(ST.opps[i].id===id)o=ST.opps[i];
 if(!o)return;
-var cur=S.cur;
 var r=stakes(o.picks,S.defStake);
-var bestRows="";
+var bestRows="",p,bk;
 for(i=0;i<o.picks.length;i++){
-var p=o.picks[i],bk=BK[p.bookmaker];
+p=o.picks[i];bk=BK[p.bookmaker];
 bestRows+='<div class="leg"><div class="leg-s">'+esc(p.selection)+'</div>'+
 '<div class="leg-b">'+esc(bk?bk.name:p.bookmaker)+'</div>'+
 '<div class="leg-o">'+p.odds.toFixed(2)+'</div></div>';
@@ -643,7 +943,7 @@ var html='<div class="mh"><div style="min-width:0">'+
 '</div>';
 if(o.isArb){
 html+='<div class="mt"><div class="card-h" style="padding:0 0 10px;border:none">Stake calculator</div>'+
-'<div class="field"><label>Total stake ('+esc(cur)+')</label>'+
+'<div class="field"><label>Total stake ('+esc(S.cur)+')</label>'+
 '<input type="number" id="mStake" min="1" step="10" value="'+S.defStake+'"></div>'+
 '<div id="mRes"></div></div>';
 }else{
@@ -656,11 +956,12 @@ html+='<div class="mt sm mu" style="line-height:1.6;border-top:1px solid var(--b
 openModal(html);
 if(o.isArb){
 var upd=function(){
-var total=parseFloat((document.getElementById("mStake")||{}).value)||0;
+var el=document.getElementById("mStake");
+var total=parseFloat(el?el.value:0)||0;
 var rr=stakes(o.picks,total);
-var rows="",j;
+var rows="",j,l,bk2;
 for(j=0;j<rr.legs.length;j++){
-var l=rr.legs[j],bk2=BK[l.bookmaker];
+l=rr.legs[j];bk2=BK[l.bookmaker];
 rows+='<div class="leg"><div class="leg-s">'+esc(l.selection)+'</div>'+
 '<div class="leg-b">'+esc(bk2?bk2.name:l.bookmaker)+' · <strong style="color:var(--tx)">'+money(l.stake)+'</strong></div>'+
 '<div class="leg-o">@ '+l.odds.toFixed(2)+'</div></div>';
@@ -690,14 +991,30 @@ openModal('<div class="mh"><div><h2>'+esc(b.name)+' adapter</h2>'+
 '<div class="kv"><dt>Last odds update</dt><dd>'+(ST.last?clock(ST.last):"—")+'</dd></div>'+
 '<div class="kv"><dt>Message</dt><dd style="font-weight:500;font-size:12px;max-width:60%">No official API configured. Awaiting supported data connection.</dd></div>'+
 '<div class="mt sm mu" style="line-height:1.8;font-family:ui-monospace,Menlo,monospace">'+
-'connect() → { ok, status }<br>disconnect() → void<br>getStatus() → { status, lastConnection, lastOdds, error }<br>getOdds() → NormalisedOddRow[]</div>'+
-'<div class="mt sm mu" style="line-height:1.6">Add an official API endpoint and credentials on the backend to activate this adapter. Until then it returns UNSUPPORTED rather than fabricated data.</div>'+
+'connect() → { ok, status }<br>disconnect() → void<br>getStatus() → { status }<br>getOdds() → NormalisedOddRow[]</div>'+
 '</div>'+
 '<div class="mf"><button class="btn" data-close>Close</button></div>');
 }
+function toast(t,b,k){
+var wrap=document.getElementById("toasts");
+var el=document.createElement("div");
+el.className="toast"+(k?" "+k:"");
+el.innerHTML='<div class="toast-t">'+esc(t)+'</div>'+(b?'<div class="toast-b">'+esc(b)+'</div>':'');
+wrap.appendChild(el);
+setTimeout(function(){
+el.style.transition="opacity .3s,transform .3s";
+el.style.opacity="0";el.style.transform="translateX(20px)";
+setTimeout(function(){el.remove()},320);
+},5000);
+}
+/* ---- scan ---- */
 function scan2(){
 TICK++;
+if(imported.length){
+ST.rows=imported.slice();
+}else{
 ST.rows=buildDemo();
+}
 ST.opps=scan(ST.rows);
 ST.last=Date.now();
 render();
@@ -706,8 +1023,8 @@ function parseRoute(){
 var h=location.hash.replace(/^#\/?/,"").split("/")[0].split("?")[0];
 return PAGES[h]?h:"dashboard";
 }
-function go(r){ST.route=r;render();window.scrollTo(0,0)}
 window.addEventListener("hashchange",function(){ST.route=parseRoute();render();window.scrollTo(0,0)});
+/* ---- event wiring ---- */
 document.addEventListener("click",function(e){
 var t;
 t=e.target.closest("[data-close]");if(t){closeModal();return}
@@ -715,16 +1032,84 @@ if(e.target.id==="ov"){closeModal();return}
 t=e.target.closest("[data-open]");if(t){openOpp(t.getAttribute("data-open"));return}
 t=e.target.closest("[data-opp]");if(t&&!e.target.closest("button")){openOpp(t.getAttribute("data-opp"));return}
 t=e.target.closest("[data-bkinfo]");if(t){openBkInfo(t.getAttribute("data-bkinfo"));return}
-if(e.target.closest("#themeBtn")){S.dark=!S.dark;save(LS.set,S);applyTheme();
-document.getElementById("themeBtn").textContent=S.dark?"🌙":"☀️";
-if(ST.route==="settings")render();return}
+/* import tabs */
+t=e.target.closest("[data-tab]");
+if(t){ST.tab=t.getAttribute("data-tab");render();return}
+/* quick add */
+if(e.target.closest("#qAdd")){
+var bk=(document.getElementById("qBk")||{}).value;
+var sp=(document.getElementById("qSp")||{}).value;
+var lg=((document.getElementById("qLg")||{}).value||"").trim();
+var mt=((document.getElementById("qMt")||{}).value||"").trim();
+var mk=((document.getElementById("qMk")||{}).value||"").trim();
+var sel=((document.getElementById("qSel")||{}).value||"").trim();
+var od=parseFloat((document.getElementById("qOd")||{}).value);
+if(!lg||!mt||!mk||!sel){toast("Missing field","League, match, market and selection are all required.","a");return}
+if(!(od>1.0001)){toast("Invalid odds","Odds must be greater than 1.00.","a");return}
+addImp({bookmaker:bk,sport:sp,league:lg,match:mt,market:normMarket(mk),marketRaw:mk,
+selection:resolveSel(sel),odds:od,ts:Date.now(),src:"import"});
+var odEl=document.getElementById("qOd");if(odEl){odEl.value="";odEl.focus()}
+var selEl=document.getElementById("qSel");if(selEl)selEl.value="";
+scan2();
+toast("Row added",mt+" — "+sel+" @ "+od.toFixed(2),"");
+return;
+}
+/* bulk */
+if(e.target.closest("#bulkExample")){
+var tx=document.getElementById("bulkText");
+if(tx)tx.value=
+"bookmaker,sport,league,match,market,selection,odds\n"+
+"sportybet,Football,Premier League,Chelsea vs Arsenal,1X2,Home,2.20\n"+
+"betway,Football,Premier League,Chelsea vs Arsenal,1X2,Draw,4.00\n"+
+"betano,Football,Premier League,Chelsea vs Arsenal,1X2,Away,4.80\n"+
+"sportybet,Football,Premier League,Man City vs Liverpool,1X2,Home,2.05\n"+
+"betano,Football,Premier League,Man City vs Liverpool,1X2,Draw,3.65\n"+
+"betway,Football,Premier League,Man City vs Liverpool,1X2,Away,3.95";
+return;
+}
+if(e.target.closest("#bulkParse")){
+var txt=((document.getElementById("bulkText")||{}).value||"");
+if(!txt.trim()){toast("Nothing to parse","Paste CSV rows first.","a");return}
+ST.preview=parseCSV(txt);
+var pv=document.getElementById("bulkPrev");
+if(pv)pv.innerHTML=bulkPrevHTML();
+if(!ST.preview.rows.length){toast("No valid rows","Check the format — 7 comma-separated columns per line.","e");}
+else{toast("Parsed",ST.preview.rows.length+" valid, "+ST.preview.errs.length+" rejected.","");}
+return;
+}
+if(e.target.closest("#bulkImport")){
+if(!ST.preview||!ST.preview.rows.length)return;
+var n=ST.preview.rows.length,i;
+for(i=0;i<ST.preview.rows.length;i++)addImp(ST.preview.rows[i]);
+ST.preview=null;
+var pv2=document.getElementById("bulkPrev");if(pv2)pv2.innerHTML="";
+var tx2=document.getElementById("bulkText");if(tx2)tx2.value="";
+scan2();
+toast("Imported","+"+n+" odds rows added.","");
+return;
+}
+/* delete / clear imported */
+t=e.target.closest("[data-delimp]");
+if(t){delImp(parseInt(t.getAttribute("data-delimp"),10));render();return}
+if(e.target.closest("#impClear")){clearImp();toast("Cleared","All imported odds removed. Demo feed is active again.","");return}
+if(e.target.closest("#impRescan")){scan2();return}
+/* calculator */
 if(e.target.closest("#cAdd")){if(calcOdds.length<3){calcOdds.push("");renderCalcLegs();renderCalcRes()}return}
 if(e.target.closest("#cRm")){if(calcOdds.length>2){calcOdds.pop();renderCalcLegs();renderCalcRes()}return}
 if(e.target.closest("#cReset")){calcOdds=["",""];
 var cs=document.getElementById("cStake");if(cs)cs.value=S.defStake;
 renderCalcLegs();renderCalcRes();return}
-if(e.target.closest("#sDark")){S.dark=!S.dark;save(LS.set,S);applyTheme();
-document.getElementById("themeBtn").textContent=S.dark?"🌙":"☀️";render();return}
+/* theme */
+if(e.target.closest("#themeBtn")){
+S.dark=!S.dark;save(LS.set,S);applyTheme();
+document.getElementById("themeBtn").textContent=S.dark?"🌙":"☀️";
+if(ST.route==="settings")render();return;
+}
+/* settings buttons */
+if(e.target.closest("#sDark")){
+S.dark=!S.dark;save(LS.set,S);applyTheme();
+document.getElementById("themeBtn").textContent=S.dark?"🌙":"☀️";render();return;
+}
 });
 document.addEventListener("input",function(e){
 var t=e.target;
@@ -733,6 +1118,7 @@ if(t.getAttribute&&t.getAttribute("data-co")!=null){
 calcOdds[parseInt(t.getAttribute("data-co"),10)]=t.value;
 renderCalcRes();return;
 }
+if(t.id==="qMk"){renderSelField();return}
 if(t.id==="sMin"){S.minArb=parseFloat(t.value)||0;save(LS.set,S);return}
 if(t.id==="sStake"){S.defStake=parseFloat(t.value)||0;save(LS.set,S);return}
 });
@@ -742,17 +1128,23 @@ if(t.id==="sCur"){S.cur=t.value;save(LS.set,S);render();return}
 if(t.id==="sMin"){S.minArb=parseFloat(t.value)||0;save(LS.set,S);render();return}
 if(t.id==="sStake"){S.defStake=parseFloat(t.value)||0;save(LS.set,S);return}
 });
+/* ---- init ---- */
 function init(){
 applyTheme();
 document.getElementById("themeBtn").textContent=S.dark?"🌙":"☀️";
 ST.route=parseRoute();
 scan2();
+checkHashImport();
 setInterval(function(){
+TICK++;
+if(imported.length){
 if(ST.route==="dashboard"||ST.route==="opps")render();
-},30000);
-setInterval(function(){
-TICK++;ST.rows=buildDemo();ST.opps=scan(ST.rows);ST.last=Date.now();
+}else{
+ST.rows=buildDemo();
+ST.opps=scan(ST.rows);
+ST.last=Date.now();
 if(ST.route==="dashboard"||ST.route==="opps")render();
+}
 },30000);
 }
 init();
